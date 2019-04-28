@@ -2,7 +2,7 @@
 #conda install -c anaconda basemap
 #conda install basemap-data-hires
 import matplotlib.pyplot as plt
-from mpl_toolkits.basemap import Basemap # Matplotlib is already imported
+from mpl_toolkits.basemap import Basemap 
 plt.figure(figsize=(10,10))
 m = Basemap(
      projection='ortho', 
