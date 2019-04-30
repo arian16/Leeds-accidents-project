@@ -15,7 +15,7 @@ df1=df1.rename(index=str, columns={"pedestrian_crossing-physical_facilities'": "
 df_date=pd.DatetimeIndex(df1['date']) # Access df by df.year/df.month/df.day
 
 
-# value_count_calculator function finds the frequency of each unique value in  the series_input.
+# value_count_calculator function finds the frequency of each unique value in the series_input.
 # This function organizses the value counts (corresponds to cases) in a new dataframe.
 def value_count_calculator(series_input,name_input_str,index_name_str): # name_input_str = 'cases', index_name_str = label (str) for series_input
     df_temp1=pd.DataFrame({name_input_str: series_input.value_counts()})
