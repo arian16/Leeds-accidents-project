@@ -1,0 +1,17 @@
+# Create a database for the csv files in the dataset using command-line tool
+>sqlite3 /Users/Documents/Project/UKaccidents.db
+SQLite3> .exit
+
+> sqlite3 
+SQLite3> .open “UKaccidents.db”
+# Import a .csv file:
+SQLite3> .mode csv  # set the mode
+SQLite3> .import  /Users/Documents/Project/accidents.csv accidents # .import filename table name
+SQLite3> .schema # to check the list of tables including column names
+SQLite3> .tables # to check the list of table(s)
+# Repeat for other cvs files
+SQLite3> .mode csv  # set the mode
+SQLite3> .import  /Users/Documents/Project/veh.csv vehciles
+SQLite3> .mode csv  # set the mode
+SQLite3> .import  /Users/Documents/Project/cas.csv casualties
+SQLite3> .exit
