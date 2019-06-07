@@ -112,3 +112,45 @@ ax4.set_title('Number of cases w.r.t weather conditions from 2005-2017', fontsiz
 plt.xticks(rotation = 90, fontsize = 12, fontweight = 'bold') # Doesn't work with ax3
 plt.savefig('/Users/Pictures/Cases_wrt_speed_limit.png')
 plt.show()
+
+
+
+# Prediction of accident severity [1: Fatal, 2: Serious, 3: Slight]...
+# based on the environmental conditions (road, weather, light)
+# Create the regressor matrix X
+cols_env = ['road_type', 'speed_limit', 'light_conditions', 
+            'weather_conditions', 'road_surface_conditions', 
+            'special_conditions_at_site']
+X = df1.loc[:, cols_env].values
+y = df1['accident_severity'].values # df to array
+
+
+k = list(np.arange(1,30,1))
+cv_accuracy = []
+cv_error = []
+
+for i in k:
+    model_knn = neighbors.KNeighborsClassifier(i)
+    model_accuracy=cross_val_score(model_knn, X, y, cv = 5, scoring='accuracy')  
+    #https://scikit-learn.org/stable/modules/model_evaluation.html
+    cv_accuracy.append(100 * model_accuracy.mean()) # mean of 5-folds, 100 %
+    
+max_accuracy = max(cv_accuracy)
+k_optimal = k[cv_accuracy.index(max_accuracy)]
+
+figKNN, axKNN = plt.subplots(figsize=(6,6))
+axKNN.plot(k, cv_accuracy, label = 'Model accuracy')
+axKNN.set_xlabel('Neighbors', fontsize='large', fontweight='bold')
+axKNN.set_ylabel('Model accuracy (%)', fontsize='large')
+axKNN.set_title('Prediction of accident severity using KNN and k-fold CV', fontsize='large', fontweight='bold')
+axKNN.scatter(k_optimal, max_accuracy, c = 'r', label = 'Highest accuracy')
+axKNN.legend(loc = 'center right')
+axKNN.spines['right'].set_visible(False) 
+axKNN.spines['top'].set_visible(False)
+axKNN.tick_params(axis = 'both', labelsize = 12, fontweight='bold' )
+axKNN.set_ylim(0,100)
+plt.text(k_optimal, max_accuracy,str(round(max_accuracy, 1)),fontsize=12,fontweight='bold',
+                    ha='left',va='bottom',color='black',
+                    bbox=dict(facecolor='w', alpha=0.2))
+plt.savefig('/Users/Pictures/KNN_kfoldCV.png')
+plt.show()
