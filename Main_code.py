@@ -45,7 +45,7 @@ ax.legend(['Cases','Casualties','Vehicles'],loc=4)
 ax.spines['right'].set_visible(False) # plt version?
 ax.spines['top'].set_visible(False)
 ax.set_title('Number of cases/casualties/vehicles from 2005-2017') # plt.title
-plt.savefig('/Users/arian/Documents/Pictures/Cases_casualties_vehicles_2005_to_2017.png')
+plt.savefig('/Users/Pictures/Cases_casualties_vehicles_2005_to_2017.png')
 plt.show()
 ######## Cases per day of week and month #######
 
@@ -79,7 +79,7 @@ ax2.spines['right'].set_visible(False) # plt version?
 ax2.spines['top'].set_visible(False)
 ax2.set_title('Number of cases per month from 2005-2017', fontsize=14)
 plt.xticks(rotation=90) # Doesn't work with ax
-plt.savefig('/Users/Documents/Data science project/Pictures/Cases_wrt_month&dow.png')
+plt.savefig('/Users/Pictures/Cases_wrt_month&dow.png')
 plt.show()
 
 
@@ -94,7 +94,7 @@ ax3.set_ylabel('Cases')
 ax3.spines['right'].set_visible(False) # plt version?
 ax3.spines['top'].set_visible(False)
 ax3.set_title('Number of cases w.r.t speed limit from 2005-2017', fontsize=14)
-plt.savefig('/Users/arian/Documents/Data science project/Accident project/Pictures/Cases_wrt_weather.png')
+plt.savefig('/Users/Pictures/Cases_wrt_weather.png')
 plt.show()
 ##
 weather_map={1:'Fine no high winds', 2:'Raining no high winds',
@@ -110,5 +110,5 @@ ax4.spines['right'].set_visible(False) # plt version?
 ax4.spines['top'].set_visible(False)
 ax4.set_title('Number of cases w.r.t weather conditions from 2005-2017', fontsize=14, fontweight = 'bold')
 plt.xticks(rotation = 90, fontsize = 12, fontweight = 'bold') # Doesn't work with ax3
-plt.savefig('/Users/arian/Documents/Data science project/Accident project/Pictures/Cases_wrt_speed_limit.png')
+plt.savefig('/Users/Pictures/Cases_wrt_speed_limit.png')
 plt.show()
