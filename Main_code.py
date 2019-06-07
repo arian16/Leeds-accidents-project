@@ -45,7 +45,7 @@ ax.legend(['Cases','Casualties','Vehicles'],loc=4)
 ax.spines['right'].set_visible(False) # plt version?
 ax.spines['top'].set_visible(False)
 ax.set_title('Number of cases/casualties/vehicles from 2005-2017') # plt.title
-plt.savefig('/Users/arian/Documents/Pictures/Cases_casualties_vehicles_2005_to_2017.png')
+plt.savefig('/Users/Pictures/Cases_casualties_vehicles_2005_to_2017.png')
 plt.show()
 ######## Cases per day of week and month #######
 
@@ -79,5 +79,36 @@ ax2.spines['right'].set_visible(False) # plt version?
 ax2.spines['top'].set_visible(False)
 ax2.set_title('Number of cases per month from 2005-2017', fontsize=14)
 plt.xticks(rotation=90) # Doesn't work with ax
-plt.savefig('/Users/Documents/Data science project/Pictures/Cases_wrt_month&dow.png')
+plt.savefig('/Users/Pictures/Cases_wrt_month&dow.png')
+plt.show()
+
+
+######### Cases per weather catergory and speed limit #######
+cases_per_weather=value_count_calculator(df1['weather_conditions'],'cases','weather')
+cases_per_speed=value_count_calculator(df1['speed_limit'],'cases','speed')
+
+fig3, ax3 = plt.subplots(figsize=(7,5))
+ax3.bar(cases_per_speed['speed'].astype(str),cases_per_speed['cases'], width = 0.6, color = 'r')
+ax3.set_ylim(bottom=0, top=5000)
+ax3.set_ylabel('Cases')
+ax3.spines['right'].set_visible(False) # plt version?
+ax3.spines['top'].set_visible(False)
+ax3.set_title('Number of cases w.r.t speed limit from 2005-2017', fontsize=14)
+plt.savefig('/Users/arian/Documents/Data science project/Accident project/Pictures/Cases_wrt_weather.png')
+plt.show()
+##
+weather_map={1:'Fine no high winds', 2:'Raining no high winds',
+3:'Snowing no high winds',4:'Fine + high winds',5:'Raining + high winds',
+6:'Snowing + high winds',7:'Fog or mist',8:'Other',9:'Unknown'}
+cases_per_weather['weather_new']=cases_per_weather['weather'].map(weather_map)
+
+fig4, ax4 = plt.subplots(figsize=(8,8))
+ax4.semilogy(cases_per_weather['weather_new'],cases_per_weather['cases'], c='r',label='Weather conditions')
+ax4.set_ylim(bottom=0, top=10000)
+ax4.set_ylabel('Cases (semilog)', fontsize = 12, fontweight ='bold')
+ax4.spines['right'].set_visible(False) # plt version?
+ax4.spines['top'].set_visible(False)
+ax4.set_title('Number of cases w.r.t weather conditions from 2005-2017', fontsize=14, fontweight = 'bold')
+plt.xticks(rotation = 90, fontsize = 12, fontweight = 'bold') # Doesn't work with ax3
+plt.savefig('/Users/Pictures/Cases_wrt_speed_limit.png')
 plt.show()
